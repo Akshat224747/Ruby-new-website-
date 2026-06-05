@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Ruby Beauty Clinic — Muzaffarnagar</title>
+  <meta name="description" content="Learn about Ruby Beauty Clinic — our story, our team, and our passion for beauty in Muzaffarnagar."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .about-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .story-visual {
+      position: relative;
+    }
+
+    .story-main-box {
+      background: linear-gradient(135deg, var(--rose-gold-dark), var(--rose-gold));
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-main-box::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12rem;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+    }
+
+    .story-main-box .big-icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .story-main-box h3 {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .story-main-box p {
+      opacity: 0.8;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .story-badge {
+      position: absolute;
+      bottom: -20px;
+      right: 30px;
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 18px 25px;
+      text-align: center;
+      box-shadow: 0 8px 25px var(--shadow-deep);
+    }
+
+    .story-badge h4 {
+      font-size: 1.8rem;
+      color: var(--text-dark);
+    }
+
+    .story-badge p {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+
+    .story-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 20px;
+    }
+
+    .story-text p {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      line-height: 1.9;
+    }
+
+    /* VALUES */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .value-card .val-icon {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .value-card h3 {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .value-card p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* TEAM */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .team-photo {
+      background: linear-gradient(135deg, var(--cream-dark), var(--cream-deeper));
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .team-info {
+      padding: 25px 20px;
+    }
+
+    .team-info h3 {
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+
+    .team-info .role {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .team-info p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .team-info .exp-tag {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--rose-gold-dark);
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .cert-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px var(--shadow);
+      border-top: 3px solid var(--rose-gold);
+    }
+
+    .cert-card .cert-icon { font-size: 2rem; display: block; margin-bottom: 10px; }
+    .cert-card h4 { font-size: 1rem; color: var(--text-dark); margin-bottom: 5px; }
+    .cert-card p { font-size: 0.78rem; color: var(--text-light); }
+
+    /* MILESTONES */
+    .milestones {
+      background: linear-gradient(135deg, var(--rose-gold-dark), var(--rose-gold));
+      border-radius: 24px;
+      padding: 60px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .milestone h3 {
+      font-size: 3rem;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+
+    .milestone p {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 992px) {
+      .about-story { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .milestones { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .milestones { grid-template-columns: 1fr; padding: 40px 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="brand">Ruby Beauty Clinic</span>
+      <span class="tagline-small">Ruby Makeover</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" data-t="nav_services">Services</a></li>
+      <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+      <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+      <li><a href="testimonials.html" data-t="nav_reviews">Reviews</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span> About Us</div>
+    <h1>Our Story</h1>
+    <p>Passion for beauty · Rooted in Muzaffarnagar</p>
+  </div>
+
+  <section class="section">
+    <!-- STORY -->
+    <div class="about-story">
+      <div class="story-visual fade-up">
+        <div class="story-main-box">
+          <span class="big-icon">💄</span>
+          <h3>Ruby Makeover</h3>
+          <p>From a small salon to Muzaffarnagar's most trusted beauty clinic — our journey has been built on passion, skill, and the smiles of thousands of beautiful women.</p>
+        </div>
+        <div class="story-badge">
+          <h4>8+</h4>
+          <p>Years of Excellence</p>
+        </div>
+      </div>
+      <div class="story-text fade-up">
+        <span class="overline" style="font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose-gold);display:block;margin-bottom:12px;">Who We Are</span>
+        <h2>Beauty Is Our Passion, Your Confidence Is Our Goal</h2>
+        <p>Ruby Beauty Clinic was founded with a simple belief — every woman deserves to feel beautiful, confident, and celebrated. Located in the heart of Muzaffarnagar, we have been serving brides, professionals, and everyday clients for over 8 years.</p>
+        <p>Under the expert guidance of our founder and chief artist, Ruby Beauty Clinic has grown from a boutique salon to a full-service beauty clinic offering over 20 specialized treatments.</p>
+        <p>We take pride in using only premium, skin-tested products and maintaining the highest standards of hygiene and care — because you deserve nothing less.</p>
+        <div style="margin-top:30px; display:flex; gap:15px; flex-wrap:wrap;">
+          <a href="booking.html" class="btn btn-primary">Book an Appointment</a>
+          <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILESTONES -->
+    <div class="milestones fade-up">
+      <div class="milestone">
+        <h3>8+</h3>
+        <p>Years in Business</p>
+      </div>
+      <div class="milestone">
+        <h3>500+</h3>
+        <p>Happy Brides</p>
+      </div>
+      <div class="milestone">
+        <h3>5000+</h3>
+        <p>Clients Served</p>
+      </div>
+      <div class="milestone">
+        <h3>20+</h3>
+        <p>Services Offered</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-alt">
+    <div class="section-header fade-up">
+      <span class="overline">Our Values</span>
+      <h2>What Sets Us Apart</h2>
+      <div class="divider"><span>✦</span></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card fade-up">
+        <span class="val-icon">💎</span>
+        <h3>Premium Quality</h3>
+        <p>Only the finest, skin-tested products from trusted brands — no compromises on your skin.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="val-icon">🧴</span>
+        <h3>Hygiene First</h3>
+        <p>Sanitized tools, clean linens, and a spotless salon environment — always maintained, always safe.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="val-icon">❤️</span>
+        <h3>Personal Care</h3>
+        <p>Every client is unique. We listen to your needs and create a personalized experience every time.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="val-icon">🎓</span>
+        <h3>Expert Training</h3>
+        <p>Our artists stay updated with the latest techniques through regular training and certifications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="section-header fade-up">
+      <span class="overline">Our Team</span>
+      <h2>Meet the Artists</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>Our skilled team brings years of expertise and a genuine passion for beauty to every client.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-photo">👩‍🎨</div>
+        <div class="team-info">
+          <h3>Ruby (Founder)</h3>
+          <span class="role">Chief Makeup Artist & Owner</span>
+          <p>The heart and soul of Ruby Beauty Clinic. Expert in bridal makeup, HD techniques, and skin treatments with 8+ years of experience.</p>
+          <span class="exp-tag">8+ Years Experience</span>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-photo">💇‍♀️</div>
+        <div class="team-info">
+          <h3>Priyanka</h3>
+          <span class="role">Senior Hair Stylist</span>
+          <p>Specialist in hair coloring, keratin treatments, balayage, and all types of hair styling and care.</p>
+          <span class="exp-tag">5+ Years Experience</span>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-photo">✨</div>
+        <div class="team-info">
+          <h3>Sunita</h3>
+          <span class="role">Skin & Nail Specialist</span>
+          <p>Expert in advanced facials, de-tan treatments, nail art, and all skin care procedures.</p>
+          <span class="exp-tag">4+ Years Experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section section-alt">
+    <div class="section-header fade-up">
+      <span class="overline">Credentials</span>
+      <h2>Trained & Certified</h2>
+      <div class="divider"><span>✦</span></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card fade-up">
+        <span class="cert-icon">🏆</span>
+        <h4>Bridal Makeup Certification</h4>
+        <p>Professionally trained in HD & Airbrush bridal techniques</p>
+      </div>
+      <div class="cert-card fade-up">
+        <span class="cert-icon">🎓</span>
+        <h4>Advanced Skin Care</h4>
+        <p>Certified in facial treatments, chemical peels & skin analysis</p>
+      </div>
+      <div class="cert-card fade-up">
+        <span class="cert-icon">✂️</span>
+        <h4>Hair Styling & Color</h4>
+        <p>Trained in global hair color, keratin & rebonding techniques</p>
+      </div>
+      <div class="cert-card fade-up">
+        <span class="cert-icon">🌿</span>
+        <h4>Hygiene & Safety</h4>
+        <p>Follows all standard salon hygiene and sterilization protocols</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand">Ruby Beauty Clinic</span>
+        <span class="sub">Ruby Makeover</span>
+        <p>8+ years of trusted beauty services in Muzaffarnagar.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html" data-t="nav_home">Home</a></li>
+          <li><a href="services.html" data-t="nav_services">Services</a></li>
+          <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Facial & Skin</a></li>
+          <li><a href="services.html">Hair Services</a></li>
+          <li><a href="services.html">Waxing</a></li>
+          <li><a href="services.html">Nail Art</a></li>
+          <li><a href="services.html">Makeup</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p><span>📍</span> 786/40, Meerut Rd, Yogenderpuri, Muzaffarnagar, UP</p>
+        <p><span>📞</span> <a href="tel:+919412211583" style="color:var(--rose-gold-light);">+91 94122 11583</a></p>
+        <p><span>🕐</span> Mon–Sat: 9AM–8PM | Sun: 10AM–6PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Ruby Beauty Clinic. All rights reserved.</p>
+      <p>Made with ❤️ for Ruby Makeover</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919412211583" target="_blank" class="whatsapp-float">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.556 4.112 1.528 5.837L.057 23.5l5.806-1.523A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.516-5.18-1.415l-.371-.221-3.845 1.008 1.025-3.739-.242-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </a>
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

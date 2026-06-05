@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bridal Packages | Ruby Beauty Clinic — Muzaffarnagar</title>
+  <meta name="description" content="Complete bridal packages at Ruby Beauty Clinic Muzaffarnagar — HD makeup, airbrush, pre-bridal treatments, mehendi and more."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .bridal-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 5% 80px;
+      background: linear-gradient(135deg, #2C1810 0%, #6B3020 50%, #A07050 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bridal-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9956C' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .bridal-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bridal-hero .overline {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .bridal-hero h1 {
+      font-size: clamp(3rem, 7vw, 5rem);
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .bridal-hero h1 em {
+      color: var(--rose-gold-light);
+      font-style: italic;
+    }
+
+    .bridal-hero p {
+      opacity: 0.8;
+      max-width: 550px;
+      margin: 0 auto 35px;
+      font-size: 1rem;
+    }
+
+    /* PACKAGES */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .package-card {
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 25px var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px var(--shadow-deep);
+    }
+
+    .package-card.featured {
+      border: 2px solid var(--rose-gold);
+    }
+
+    .package-card.featured .package-header {
+      background: linear-gradient(135deg, var(--rose-gold-dark), var(--rose-gold));
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: var(--text-dark);
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .package-header {
+      background: linear-gradient(135deg, var(--cream-dark), var(--cream-deeper));
+      padding: 35px 30px;
+      text-align: center;
+    }
+
+    .package-header .pkg-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .package-header h3 {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+
+    .package-card.featured .package-header h3 {
+      color: var(--white);
+    }
+
+    .package-header .pkg-sub {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .package-card.featured .package-header .pkg-sub {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .package-price {
+      text-align: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .package-price .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--rose-gold-dark);
+      font-weight: 600;
+    }
+
+    .package-price .price-note {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    .package-includes {
+      padding: 25px 30px;
+    }
+
+    .package-includes h4 {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      margin-bottom: 15px;
+    }
+
+    .package-includes ul {
+      list-style: none;
+    }
+
+    .package-includes ul li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .package-includes ul li:last-child {
+      border-bottom: none;
+    }
+
+    .package-includes ul li::before {
+      content: '✦';
+      color: var(--rose-gold);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .package-cta {
+      padding: 20px 30px 30px;
+      text-align: center;
+    }
+
+    .package-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* PRE BRIDAL */
+    .prebridal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .prebridal-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .prebridal-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .prebridal-card .step-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--rose-gold), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      margin: 0 auto 15px;
+    }
+
+    .prebridal-card h3 {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .prebridal-card p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .bridal-quote {
+      background: linear-gradient(135deg, var(--text-dark), #4A2810);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      color: var(--white);
+      margin: 60px 0;
+    }
+
+    .bridal-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 300;
+      max-width: 650px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      color: var(--cream);
+    }
+
+    .bridal-quote cite {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose-gold-light);
+    }
+
+    @media (max-width: 992px) {
+      .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto 60px; }
+      .prebridal-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .prebridal-grid { grid-template-columns: 1fr; }
+      .bridal-quote { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" style="background:rgba(44,24,16,0.95); border-bottom-color:rgba(201,149,108,0.2);">
+    <div class="nav-logo">
+      <span class="brand" style="color:var(--rose-gold-light);">Ruby Beauty Clinic</span>
+      <span class="tagline-small">Ruby Makeover</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" data-t="nav_services">Services</a></li>
+      <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+      <li><a href="bridal.html" class="active">Bridal</a></li>
+      <li><a href="testimonials.html" data-t="nav_reviews">Reviews</a></li>
+      <li><a href="about.html" data-t="nav_about">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <div class="hamburger"><span style="background:var(--cream);"></span><span style="background:var(--cream);"></span><span style="background:var(--cream);"></span></div>
+  </nav>
+
+  <!-- BRIDAL HERO -->
+  <section class="bridal-hero">
+    <div class="bridal-hero-content">
+      <span class="overline">✦ Your Most Beautiful Day ✦</span>
+      <h1>Bridal Beauty<br/><em>Perfected</em></h1>
+      <p>Every bride deserves to feel like royalty. Our expert bridal artists craft your dream look with precision, love, and the finest techniques.</p>
+      <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+        <a href="booking.html" class="btn btn-primary">Book Bridal Consultation</a>
+        <a href="https://wa.me/919412211583" target="_blank" class="btn btn-whatsapp">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section">
+    <div class="section-header fade-up">
+      <span class="overline">Bridal Packages</span>
+      <h2>Choose Your Perfect Package</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>All packages include a complimentary pre-bridal consultation. Customize as per your needs.</p>
+    </div>
+
+    <div class="packages-grid">
+      <!-- SILVER -->
+      <div class="package-card fade-up">
+        <div class="package-header">
+          <span class="pkg-icon">🌸</span>
+          <h3>Silver Bridal</h3>
+          <span class="pkg-sub">Classic Elegance</span>
+        </div>
+        <div class="package-price">
+          <div class="price">₹5,000</div>
+          <div class="price-note">Starting price · customizable</div>
+        </div>
+        <div class="package-includes">
+          <h4>Includes</h4>
+          <ul>
+            <li>HD Bridal Makeup</li>
+            <li>Hair Setting / Updo</li>
+            <li>Saree / Lehenga Draping</li>
+            <li>Eyebrow Shaping</li>
+            <li>Lip Color of Choice</li>
+            <li>Fake Lashes</li>
+          </ul>
+        </div>
+        <div class="package-cta">
+          <a href="https://wa.me/919412211583?text=Hello! I am interested in the Silver Bridal Package." target="_blank" class="btn btn-outline">Book This Package</a>
+        </div>
+      </div>
+
+      <!-- GOLD — FEATURED -->
+      <div class="package-card featured fade-up">
+        <span class="featured-badge">⭐ Most Popular</span>
+        <div class="package-header">
+          <span class="pkg-icon">💍</span>
+          <h3>Gold Bridal</h3>
+          <span class="pkg-sub">Complete Bridal Experience</span>
+        </div>
+        <div class="package-price">
+          <div class="price">₹10,000</div>
+          <div class="price-note">Starting price · customizable</div>
+        </div>
+        <div class="package-includes">
+          <h4>Includes</h4>
+          <ul>
+            <li>HD Bridal Makeup (Full Day)</li>
+            <li>Airbrush Foundation</li>
+            <li>Hair Setting + Extensions</li>
+            <li>Saree / Lehenga Draping</li>
+            <li>Full Body Waxing</li>
+            <li>Bridal Facial</li>
+            <li>Mehendi (Both Hands)</li>
+            <li>Manicure + Pedicure</li>
+            <li>Fake Lashes + Touch-up Kit</li>
+          </ul>
+        </div>
+        <div class="package-cta">
+          <a href="https://wa.me/919412211583?text=Hello! I am interested in the Gold Bridal Package." target="_blank" class="btn btn-primary">Book This Package</a>
+        </div>
+      </div>
+
+      <!-- DIAMOND -->
+      <div class="package-card fade-up">
+        <div class="package-header">
+          <span class="pkg-icon">👑</span>
+          <h3>Diamond Bridal</h3>
+          <span class="pkg-sub">Royal Treatment</span>
+        </div>
+        <div class="package-price">
+          <div class="price">₹18,000</div>
+          <div class="price-note">Starting price · customizable</div>
+        </div>
+        <div class="package-includes">
+          <h4>Includes</h4>
+          <ul>
+            <li>Airbrush Bridal Makeup</li>
+            <li>Pre-Bridal Package (3 Sessions)</li>
+            <li>Hair Extensions + Styling</li>
+            <li>Bridal + Reception Look</li>
+            <li>Full Body Waxing + Polishing</li>
+            <li>Bridal Mehendi (Full)</li>
+            <li>Gel Manicure + Pedicure</li>
+            <li>Engagement Day Look</li>
+            <li>Touch-up Artist (On-location)</li>
+          </ul>
+        </div>
+        <div class="package-cta">
+          <a href="https://wa.me/919412211583?text=Hello! I am interested in the Diamond Bridal Package." target="_blank" class="btn btn-outline">Book This Package</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="bridal-quote fade-up">
+      <blockquote>"Maine Ruby Beauty Clinic se apna bridal look karwaya — bilkul waise jaisa maine sapna dekha tha. Sab mehman dekhte hi reh gaye!"</blockquote>
+      <cite>— Neha Agarwal, Bride from Muzaffarnagar</cite>
+    </div>
+
+    <!-- PRE BRIDAL -->
+    <div class="section-header fade-up">
+      <span class="overline">Pre-Bridal Care</span>
+      <h2>Your Journey to the Big Day</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>We recommend starting your pre-bridal care 3 months before your wedding for the best results.</p>
+    </div>
+
+    <div class="prebridal-grid">
+      <div class="prebridal-card fade-up">
+        <div class="step-num">1</div>
+        <h3>3 Months Before</h3>
+        <p>Consultation + Skin Analysis + Start facial treatments + Body polishing</p>
+      </div>
+      <div class="prebridal-card fade-up">
+        <div class="step-num">2</div>
+        <h3>2 Months Before</h3>
+        <p>Hair spa + Deep conditioning + Threading & shaping + De-tan sessions</p>
+      </div>
+      <div class="prebridal-card fade-up">
+        <div class="step-num">3</div>
+        <h3>1 Month Before</h3>
+        <p>Trial makeup + Waxing + Bridal facial + Nail prep + Mehendi trial</p>
+      </div>
+      <div class="prebridal-card fade-up">
+        <div class="step-num">4</div>
+        <h3>Wedding Day</h3>
+        <p>Full bridal look + Hair + Draping + Touch-up + You shine like royalty 👑</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:50px;" class="fade-up">
+      <p style="color:var(--text-light); margin-bottom:25px; font-size:0.95rem;">Ready to begin your bridal journey?</p>
+      <a href="https://wa.me/919412211583?text=Hello! I want to book a bridal consultation at Ruby Beauty Clinic." target="_blank" class="btn btn-primary">✦ Book Free Consultation</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand">Ruby Beauty Clinic</span>
+        <span class="sub">Ruby Makeover</span>
+        <p>Muzaffarnagar's most trusted bridal beauty destination.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html" data-t="nav_home">Home</a></li>
+          <li><a href="services.html" data-t="nav_services">Services</a></li>
+          <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Bridal</h4>
+        <ul>
+          <li><a href="bridal.html">Silver Package</a></li>
+          <li><a href="bridal.html">Gold Package</a></li>
+          <li><a href="bridal.html">Diamond Package</a></li>
+          <li><a href="bridal.html">Pre-Bridal Care</a></li>
+          <li><a href="bridal.html">Mehendi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p><span>📍</span> 786/40, Meerut Rd, Yogenderpuri, Muzaffarnagar, UP</p>
+        <p><span>📞</span> <a href="tel:+919412211583" style="color:var(--rose-gold-light);">+91 94122 11583</a></p>
+        <p><span>🕐</span> Mon–Sat: 9AM–8PM | Sun: 10AM–6PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Ruby Beauty Clinic. All rights reserved.</p>
+      <p>Made with ❤️ for Ruby Makeover</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919412211583" target="_blank" class="whatsapp-float">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.556 4.112 1.528 5.837L.057 23.5l5.806-1.523A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.516-5.18-1.415l-.371-.221-3.845 1.008 1.025-3.739-.242-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </a>
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

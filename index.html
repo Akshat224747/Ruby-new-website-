@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruby Beauty Clinic | Ruby Makeover – Muzaffarnagar</title>
+  <meta name="description" content="Ruby Beauty Clinic – Premium beauty services in Muzaffarnagar. Facials, bridal makeup, hair care, waxing & more. Book your appointment today."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ===== SHIMMER BANNER ===== */
+    .offer-banner {
+      background: linear-gradient(90deg, #2C1810, #8B4513, #C9956B, #E8C4A0, #C9956B, #8B4513, #2C1810);
+      background-size: 300% 100%;
+      animation: shimmerBg 4s linear infinite;
+      color: white;
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1001;
+    }
+    @keyframes shimmerBg {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+    .banner-track {
+      display: flex;
+      white-space: nowrap;
+      animation: scrollBanner 28s linear infinite;
+    }
+    @keyframes scrollBanner {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .banner-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0 2.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFF8F0;
+    }
+    .banner-item .dot { color: #E8C4A0; font-size: 1rem; }
+    .banner-item a { color: #FFD9A8; text-decoration: none; font-weight: 600; }
+
+    /* ===== WHATSAPP POPUP ===== */
+    .wa-popup {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      width: 290px;
+      z-index: 9998;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+    .wa-popup.show { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .wa-popup-header {
+      background: #25D366;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .wa-popup-avatar {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .wa-popup-info .name { font-size: 0.9rem; font-weight: 600; color: white; }
+    .wa-popup-info .status { font-size: 0.72rem; color: rgba(255,255,255,0.85); }
+    .wa-popup-close {
+      margin-left: auto;
+      background: none; border: none;
+      color: white; font-size: 1.2rem;
+      cursor: pointer; opacity: 0.8;
+      line-height: 1;
+    }
+    .wa-popup-body { padding: 1rem; }
+    .wa-bubble {
+      background: #f0f4f8;
+      border-radius: 0 10px 10px 10px;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      max-width: 90%;
+    }
+    .wa-popup-btn {
+      display: block;
+      background: #25D366;
+      color: white;
+      text-align: center;
+      padding: 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background 0.3s;
+    }
+    .wa-popup-btn:hover { background: #1da851; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--cream-dark) 60%, var(--cream-deeper) 100%);
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      padding-top: 108px;
+      position: relative;
+      overflow: hidden;
+      gap: 3rem;
+    }
+    .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,149,107,0.12) 0%, transparent 70%); }
+    .hero-content { max-width: 550px; position: relative; z-index: 1; flex-shrink: 0; }
+    .hero-image { flex: 1; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+    .hero-image img { width: 100%; max-width: 600px; height: 480px; object-fit: cover; border-radius: 8px; box-shadow: 0 25px 60px rgba(44,24,16,0.25); border: 3px solid var(--cream-deeper); }
+    .hero-image::before { content: ''; position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px; border: 1.5px solid var(--rose-gold-light); border-radius: 8px; z-index: -1; }
+    .hero-image-badge { position: absolute; bottom: -16px; left: 24px; background: var(--rose-gold); color: white; padding: 0.6rem 1.2rem; border-radius: 3px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 4px 15px rgba(201,149,107,0.4); }
+    @media (max-width: 900px) { .hero { flex-direction: column; padding-top: 120px; text-align: center; } .hero-image { width: 100%; } .hero-image img { height: 260px; } .hero-btns { justify-content: center; } }
+    .hero-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rose-gold); margin-bottom: 1.5rem; padding: 0.4rem 1rem; border: 1px solid var(--rose-gold-light); border-radius: 2px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--text-dark); margin-bottom: 1.5rem; }
+    .hero-title em { font-style: italic; color: var(--rose-gold-dark); }
+    .hero-title .accent { display: block; font-size: 0.55em; font-weight: 300; color: var(--text-light); letter-spacing: 0.05em; font-style: normal; margin-bottom: 0.2em; }
+    .hero-desc { font-size: 1rem; color: var(--text-light); font-weight: 300; line-height: 1.8; max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    /* ===== ANIMATED COUNTERS ===== */
+    .counters-section { background: var(--text-dark); padding: 3.5rem 5%; }
+    .counters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+    .counter-item {}
+    .counter-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--rose-gold-light); line-height: 1; display: flex; align-items: center; justify-content: center; gap: 0.1em; }
+    .counter-num .suffix { font-size: 0.6em; color: var(--rose-gold); }
+    .counter-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8C7A70; margin-top: 0.5rem; font-weight: 300; }
+
+    /* ===== SERVICES OVERVIEW ===== */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .service-card { padding: 2rem; text-align: center; }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.85rem; color: var(--text-light); font-weight: 300; line-height: 1.6; }
+
+    /* ===== SPECIAL OFFERS ===== */
+    .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .offer-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--cream-deeper);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .offer-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rose-gold-dark), var(--rose-gold-light));
+    }
+    .offer-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(201,149,107,0.2); border-color: var(--rose-gold-light); }
+    .offer-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark));
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .offer-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .offer-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .offer-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; font-weight: 300; margin-bottom: 1.2rem; }
+    .offer-highlight { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--rose-gold-dark); margin-bottom: 1.2rem; display: block; }
+    .offer-terms { font-size: 0.72rem; color: var(--text-light); font-style: italic; }
+
+    /* ===== FAQ ===== */
+    .faq-list { max-width: 750px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--cream-deeper); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      gap: 1rem;
+      transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--rose-gold-dark); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--cream-deeper);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--rose-gold);
+      flex-shrink: 0;
+      transition: all 0.3s;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon { background: var(--rose-gold); color: white; border-color: var(--rose-gold); transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-answer-inner {
+      padding-bottom: 1.2rem;
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    /* ===== WHY US ===== */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .why-item { text-align: center; padding: 1.5rem; }
+    .why-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--rose-gold-light); line-height: 1; margin-bottom: 0.5rem; }
+    .why-title { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .why-desc { font-size: 0.82rem; color: var(--text-light); font-weight: 300; line-height: 1.6; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner { background: linear-gradient(135deg, var(--text-dark) 0%, #4A2018 100%); padding: 4rem 5%; text-align: center; position: relative; overflow: hidden; }
+    .cta-banner::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,149,107,0.1) 0%, transparent 60%); }
+    .cta-banner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 0.75rem; position: relative; z-index: 1; }
+    .cta-banner h2 em { font-style: italic; color: var(--rose-gold-light); }
+    .cta-banner p { font-size: 0.95rem; color: #8C7A70; font-weight: 300; margin-bottom: 2rem; position: relative; z-index: 1; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- SHIMMER OFFER BANNER -->
+  <div class="offer-banner">
+    <div class="banner-track">
+      <span class="banner-item">✨ Pehli Visit pe 20% Off <span class="dot">✦</span></span>
+      <span class="banner-item">📞 Book Now: <a href="tel:+919412211583">94122 11583</a> <span class="dot">✦</span></span>
+      <span class="banner-item">👰 Bridal Package sirf ₹1,500 se shuru <span class="dot">✦</span></span>
+      <span class="banner-item">🕐 Mon–Sat: 9AM–8PM | Sun: 10AM–6PM <span class="dot">✦</span></span>
+      <span class="banner-item">🎁 Refer a Friend – 10% Off dono ko <span class="dot">✦</span></span>
+      <span class="banner-item">💬 WhatsApp: <a href="https://wa.me/919412211583">94122 11583</a> <span class="dot">✦</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="banner-item">✨ Pehli Visit pe 20% Off <span class="dot">✦</span></span>
+      <span class="banner-item">📞 Book Now: <a href="tel:+919412211583">94122 11583</a> <span class="dot">✦</span></span>
+      <span class="banner-item">👰 Bridal Package sirf ₹1,500 se shuru <span class="dot">✦</span></span>
+      <span class="banner-item">🕐 Mon–Sat: 9AM–8PM | Sun: 10AM–6PM <span class="dot">✦</span></span>
+      <span class="banner-item">🎁 Refer a Friend – 10% Off dono ko <span class="dot">✦</span></span>
+      <span class="banner-item">💬 WhatsApp: <a href="https://wa.me/919412211583">94122 11583</a> <span class="dot">✦</span></span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" style="top:38px;">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">Ruby Beauty Clinic</span>
+      <span class="logo-sub">Ruby Makeover · Muzaffarnagar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" data-t="nav_services">Services</a></li>
+      <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+      <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+      <li><a href="testimonials.html" data-t="nav_reviews">Reviews</a></li>
+      <li><a href="about.html" data-t="nav_about">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLang()" aria-label="Toggle Language">हिंदी</button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- WHATSAPP POPUP -->
+  <div class="wa-popup" id="waPopup">
+    <div class="wa-popup-header">
+      <div class="wa-popup-avatar">💇</div>
+      <div class="wa-popup-info">
+        <div class="name">Ruby Beauty Clinic</div>
+        <div class="status">● Online – Quick Reply</div>
+      </div>
+      <button class="wa-popup-close" onclick="document.getElementById('waPopup').classList.remove('show')">✕</button>
+    </div>
+    <div class="wa-popup-body">
+      <div class="wa-bubble">Namaste! 👋 Ruby Beauty Clinic mein aapka swagat hai.<br><br>Appointment book karein aur <strong>pehli visit pe 20% off</strong> paayein! 🎉</div>
+      <a href="https://wa.me/919412211583?text=Hi%20Ruby%20Beauty%20Clinic!%20Main%20appointment%20book%20karna%20chahta%20hoon." target="_blank" class="wa-popup-btn">💬 WhatsApp pe Book Karein</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag fade-up" data-t="hero_tag">✦ Premium Beauty Clinic · Muzaffarnagar</span>
+      <h1 class="hero-title fade-up delay-1">
+        <span class="accent" data-t="hero_welcome">Welcome to</span>
+        Ruby <em>Beauty</em><br>Clinic
+      </h1>
+      <p class="hero-desc fade-up delay-2" data-t="hero_desc">Experience luxury beauty treatments crafted just for you. From radiant facials to breathtaking bridal transformations — your beauty is our passion.</p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="booking.html" class="btn-primary" data-t="hero_btn1">Book Appointment</a>
+        <a href="services.html" class="btn-outline" data-t="hero_btn2">Our Services</a>
+      </div>
+    </div>
+
+      <div class="hero-image fade-up delay-4">
+        <img src="images/hero-interior.jpg" alt="Ruby Beauty Clinic Interior"/>
+        <span class="hero-image-badge">✦ Muzaffarnagar's Premium Clinic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATED COUNTERS -->
+  <section class="counters-section">
+    <div class="counters-grid">
+      <div class="counter-item">
+        <div class="counter-num"><span class="counter" data-target="500">0</span><span class="suffix">+</span></div>
+        <div class="counter-label" data-t="counter_clients">Happy Clients</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num"><span class="counter" data-target="10">0</span><span class="suffix">+</span></div>
+        <div class="counter-label" data-t="counter_exp">Years Experience</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num"><span class="counter" data-target="30">0</span><span class="suffix">+</span></div>
+        <div class="counter-label" data-t="counter_services">Services Offered</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num"><span class="counter" data-target="5">0</span><span class="suffix">★</span></div>
+        <div class="counter-label" data-t="counter_rating">Star Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Our <em>Signature</em> Services</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Premium treatments delivered with professional expertise and top-quality products.</p>
+    </div>
+    <div class="services-grid">
+      <div class="card service-card"><span class="service-icon">✨</span><div class="service-name">Facials & Skin Care</div><p class="service-desc">Deep cleansing, brightening & anti-aging facial treatments for glowing skin.</p></div>
+      <div class="card service-card"><span class="service-icon">💄</span><div class="service-name">Makeup & Styling</div><p class="service-desc">Party, bridal & everyday makeup by expert artists using top brands.</p></div>
+      <div class="card service-card"><span class="service-icon">💇</span><div class="service-name">Hair Treatments</div><p class="service-desc">Cuts, coloring, keratin, smoothening & all hair care services.</p></div>
+      <div class="card service-card"><span class="service-icon">💅</span><div class="service-name">Nail Art</div><p class="service-desc">Manicure, pedicure, gel nails & creative nail art designs.</p></div>
+      <div class="card service-card"><span class="service-icon">🌸</span><div class="service-name">Waxing & Threading</div><p class="service-desc">Full body waxing, threading & hair removal with premium wax.</p></div>
+      <div class="card service-card"><span class="service-icon">👰</span><div class="service-name">Bridal Packages</div><p class="service-desc">Complete bridal makeover packages for your most special day.</p></div>
+    </div>
+    <div style="text-align:center; margin-top: 2.5rem;">
+      <a href="services.html" class="btn-outline">View All Services & Prices</a>
+    </div>
+  </section>
+
+  <!-- SPECIAL OFFERS -->
+  <section class="section section-alt">
+    <div class="section-header">
+      <span class="section-tag">Limited Time</span>
+      <h2 class="section-title">Special <em>Offers</em></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Exclusive deals for our valued clients. Book today and save!</p>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <span class="offer-badge">New Clients</span>
+        <span class="offer-icon">🎉</span>
+        <div class="offer-title">Pehli Visit Discount</div>
+        <p class="offer-desc">Pehli baar aayein aur kisi bhi service pe flat discount paayein. Koi minimum spend nahi!</p>
+        <span class="offer-highlight">20% Off</span>
+        <a href="https://wa.me/919412211583?text=Hi!%20Main%20pehli%20visit%20discount%20ke%20baare%20mein%20jaanna%20chahta%20hoon." target="_blank" class="btn-primary" style="font-size:0.78rem;">Claim Offer</a>
+        <div class="offer-terms" style="margin-top:0.75rem;">*First visit only. Valid on all services.</div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-badge">Bridal Special</span>
+        <span class="offer-icon">👰</span>
+        <div class="offer-title">Bridal Package</div>
+        <p class="offer-desc">Complete bridal makeover — makeup, hair, skin prep & more. Apni shaadi ko unforgettable banayein.</p>
+        <span class="offer-highlight">₹1,500 se</span>
+        <a href="bridal.html" class="btn-primary" style="font-size:0.78rem;">View Packages</a>
+        <div class="offer-terms" style="margin-top:0.75rem;">*Starting price. Packages vary by requirements.</div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-badge">Refer & Earn</span>
+        <span class="offer-icon">🎁</span>
+        <div class="offer-title">Refer a Friend</div>
+        <p class="offer-desc">Apni saheli ko refer karein — dono ko 10% off milega! Jitna refer, utna save.</p>
+        <span class="offer-highlight">10% Off</span>
+        <a href="https://wa.me/919412211583?text=Hi!%20Main%20refer%20a%20friend%20offer%20ke%20baare%20mein%20jaanna%20chahta%20hoon." target="_blank" class="btn-primary" style="font-size:0.78rem;">Refer Now</a>
+        <div class="offer-terms" style="margin-top:0.75rem;">*Valid for both referrer & new client.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Why Ruby Beauty</span>
+      <h2 class="section-title">The <em>Ruby</em> Difference</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-num">01</div><div class="why-title">Expert Professionals</div><p class="why-desc">Trained & certified beauty experts with years of hands-on experience.</p></div>
+      <div class="why-item"><div class="why-num">02</div><div class="why-title">Premium Products</div><p class="why-desc">We use only top-quality, skin-safe products for all treatments.</p></div>
+      <div class="why-item"><div class="why-num">03</div><div class="why-title">Hygienic Environment</div><p class="why-desc">100% sanitized tools & clean environment for every client.</p></div>
+      <div class="why-item"><div class="why-num">04</div><div class="why-title">Affordable Prices</div><p class="why-desc">Luxury beauty services at prices that fit every budget.</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt">
+    <div class="section-header">
+      <span class="section-tag">Help Center</span>
+      <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Walk-in allowed hai ya sirf appointment pe?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Haan, walk-in welcome hai! Lekin busy hours mein wait karna pad sakta hai. Appointment lene se aapka time save hota hai aur aapko priority milti hai. WhatsApp pe 5 minute mein appointment confirm ho jaati hai.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Opening hours kya hain?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Hum Monday se Saturday 9:00 AM se 8:00 PM tak aur Sunday 10:00 AM se 6:00 PM tak khule rehte hain. Public holidays pe timing change ho sakti hai — WhatsApp pe confirm kar lein.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Bridal package mein kya kya included hai?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Bridal package mein bridal makeup, hair styling, pre-bridal skin treatment, mehendi session, aur trial makeup included hai. Package ₹1,500 se shuru hota hai aur requirements ke hisaab se customize hota hai. Bridal page pe details dekhein ya WhatsApp karein.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Kya home service available hai?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Abhi hum mainly in-salon service provide karte hain. Bridal events ke liye special home/venue service available hai. Iske liye WhatsApp pe contact karein aur details share karein — hum best solution dhundhenge.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Payment ke kya options hain?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Hum Cash, UPI (PhonePe, Google Pay, Paytm), aur sab major payment methods accept karte hain. Koi hidden charges nahi — jo price bataya gaya wahi final hoga.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Service mein kitna time lagta hai?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Simple facial ya cleanup 45–60 minutes mein ho jaata hai. Full makeup 1–2 ghante. Bridal full package 3–4 ghante ya usse zyada le sakta hai. Exact timing appointment ke waqt bata dete hain.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2>Ready for Your <em>Transformation?</em></h2>
+    <p>Book your appointment today and let us bring out your best beauty.</p>
+    <div class="cta-btns">
+      <a href="booking.html" class="btn-primary">Book Appointment</a>
+      <a href="https://wa.me/919412211583" target="_blank" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <div class="logo-main">Ruby Beauty Clinic</div>
+        <span class="logo-sub">Ruby Makeover</span>
+        <p class="footer-desc">Premium beauty services in Muzaffarnagar. Your transformation is our mission.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="bridal.html">Bridal</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Facials</a></li>
+          <li><a href="services.html">Hair Care</a></li>
+          <li><a href="services.html">Makeup</a></li>
+          <li><a href="services.html">Waxing</a></li>
+          <li><a href="bridal.html">Bridal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item"><span class="icon">📍</span><span>786/40, Meerut Rd, Yogenderpuri, Muzaffarnagar, UP 251001</span></div>
+        <div class="footer-contact-item"><span class="icon">📞</span><span>94122 11583</span></div>
+        <div class="footer-contact-item"><span class="icon">🕐</span><span>Mon–Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ruby Beauty Clinic. All rights reserved.</span>
+      <span>Muzaffarnagar, Uttar Pradesh</span>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/919412211583" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // WhatsApp popup after 5 seconds
+    setTimeout(() => {
+      const popup = document.getElementById('waPopup');
+      if (!sessionStorage.getItem('waClosed')) {
+        popup.classList.add('show');
+      }
+    }, 5000);
+    document.querySelector('.wa-popup-close').addEventListener('click', () => {
+      sessionStorage.setItem('waClosed', '1');
+    });
+
+    // Animated counters
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current);
+      }, 16);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Ruby Beauty Clinic</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .services-section { padding: 3rem 5%; max-width: 1200px; margin: 0 auto; }
+
+    .category-block { margin-bottom: 3.5rem; }
+    .category-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--cream-deeper);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .category-title em { font-style: italic; color: var(--rose-gold-dark); }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--cream-deeper);
+      border-radius: 3px;
+      transition: all 0.25s;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+    .service-item:hover {
+      border-color: var(--rose-gold-light);
+      background: var(--cream-dark);
+      color: var(--rose-gold-dark);
+      transform: translateX(4px);
+    }
+    .service-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose-gold);
+      flex-shrink: 0;
+    }
+
+    /* PRICING NOTE */
+    .pricing-note {
+      background: var(--cream-dark);
+      border: 1px solid var(--cream-deeper);
+      border-left: 4px solid var(--rose-gold);
+      padding: 1.2rem 1.5rem;
+      border-radius: 3px;
+      margin-bottom: 3rem;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .pricing-note strong { color: var(--rose-gold-dark); }
+
+    /* CTA */
+    .services-cta {
+      background: var(--text-dark);
+      border-radius: 4px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .services-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.5rem; }
+    .services-cta h3 em { font-style: italic; color: var(--rose-gold-light); }
+    .services-cta p { font-size: 0.88rem; color: #8C7A70; margin-bottom: 1.5rem; }
+    .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">Ruby Beauty Clinic</span>
+      <span class="logo-sub">Ruby Makeover · Muzaffarnagar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+      <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+      <li><a href="testimonials.html" data-t="nav_reviews">Reviews</a></li>
+      <li><a href="about.html" data-t="nav_about">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLang()">हिंदी</button>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-tag">What We Offer</div>
+      <h1 class="page-hero-title">Our <em>Services</em></h1>
+    </div>
+  </div>
+
+  <div class="services-section">
+
+    <div class="section-header" style="margin-bottom:2rem;">
+      <span class="section-tag">Complete List</span>
+      <h2 class="section-title">All <em>Services</em></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Premium beauty services delivered by expert professionals.</p>
+    </div>
+
+    <div class="pricing-note">
+      💬 <strong>Price ke liye WhatsApp karein:</strong> Exact pricing service aur requirements pe depend karti hai. Appointment ke waqt complete price list share ki jaayegi. Pehli visit pe <strong>20% off!</strong>
+    </div>
+
+    <!-- SKIN & FACE -->
+    <div class="category-block">
+      <div class="category-title">✨ Skin & <em>Face Care</em></div>
+      <div class="services-list">
+        <div class="service-item"><span class="service-dot"></span>Facials</div>
+        <div class="service-item"><span class="service-dot"></span>Acne Treatments</div>
+        <div class="service-item"><span class="service-dot"></span>Skin Care</div>
+        <div class="service-item"><span class="service-dot"></span>Tanning</div>
+        <div class="service-item"><span class="service-dot"></span>Brow Lamination</div>
+        <div class="service-item"><span class="service-dot"></span>Eyebrow Beautification</div>
+        <div class="service-item"><span class="service-dot"></span>Eyebrow Shaping</div>
+        <div class="service-item"><span class="service-dot"></span>Eyebrow Threading</div>
+        <div class="service-item"><span class="service-dot"></span>Microblading</div>
+        <div class="service-item"><span class="service-dot"></span>Permanent Makeup</div>
+        <div class="service-item"><span class="service-dot"></span>Eyelashes</div>
+        <div class="service-item"><span class="service-dot"></span>Eyelash Extensions</div>
+        <div class="service-item"><span class="service-dot"></span>Lash Lift</div>
+        <div class="service-item"><span class="service-dot"></span>Lash Perms</div>
+      </div>
+    </div>
+
+    <!-- HAIR -->
+    <div class="category-block">
+      <div class="category-title">💇 Hair <em>Services</em></div>
+      <div class="services-list">
+        <div class="service-item"><span class="service-dot"></span>Haircut</div>
+        <div class="service-item"><span class="service-dot"></span>Hairstyling</div>
+        <div class="service-item"><span class="service-dot"></span>Blow Dry</div>
+        <div class="service-item"><span class="service-dot"></span>Balayage</div>
+        <div class="service-item"><span class="service-dot"></span>Hair Extensions</div>
+        <div class="service-item"><span class="service-dot"></span>Hair Threading</div>
+        <div class="service-item"><span class="service-dot"></span>Shampoo & Conditioning</div>
+        <div class="service-item"><span class="service-dot"></span>Perms</div>
+        <div class="service-item"><span class="service-dot"></span>Box Braids</div>
+        <div class="service-item"><span class="service-dot"></span>Braids</div>
+        <div class="service-item"><span class="service-dot"></span>Dreadlocks</div>
+        <div class="service-item"><span class="service-dot"></span>Laser Hair Removal</div>
+      </div>
+    </div>
+
+    <!-- MAKEUP -->
+    <div class="category-block">
+      <div class="category-title">💄 Makeup & <em>Styling</em></div>
+      <div class="services-list">
+        <div class="service-item"><span class="service-dot"></span>Make-up</div>
+        <div class="service-item"><span class="service-dot"></span>Make-up Services</div>
+        <div class="service-item"><span class="service-dot"></span>Bridal Services</div>
+        <div class="service-item"><span class="service-dot"></span>Wedding & Event Preparation</div>
+        <div class="service-item"><span class="service-dot"></span>Online Beauty Salon Booking</div>
+      </div>
+    </div>
+
+    <!-- WAXING & BODY -->
+    <div class="category-block">
+      <div class="category-title">🌸 Waxing & <em>Body</em></div>
+      <div class="services-list">
+        <div class="service-item"><span class="service-dot"></span>Waxing</div>
+        <div class="service-item"><span class="service-dot"></span>Body Waxing</div>
+        <div class="service-item"><span class="service-dot"></span>Brazilian Waxing</div>
+        <div class="service-item"><span class="service-dot"></span>Massage</div>
+        <div class="service-item"><span class="service-dot"></span>Spa Services</div>
+      </div>
+    </div>
+
+    <!-- NAILS -->
+    <div class="category-block">
+      <div class="category-title">💅 Nail <em>Services</em></div>
+      <div class="services-list">
+        <div class="service-item"><span class="service-dot"></span>Manicure</div>
+        <div class="service-item"><span class="service-dot"></span>Pedicure</div>
+        <div class="service-item"><span class="service-dot"></span>Acrylic Nails</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="services-cta">
+      <h3>Koi Service Book <em>Karein?</em></h3>
+      <p>WhatsApp pe message karein — hum 15 minute mein reply karenge!</p>
+      <div class="cta-row">
+        <a href="booking.html" class="btn-primary">Book Appointment</a>
+        <a href="https://wa.me/919412211583?text=Hi!%20Main%20services%20aur%20pricing%20ke%20baare%20mein%20jaanna%20chahta%20hoon." target="_blank" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp karein
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <div class="logo-main">Ruby Beauty Clinic</div>
+        <span class="logo-sub">Ruby Makeover</span>
+        <p class="footer-desc">Premium beauty services in Muzaffarnagar. Your transformation is our mission.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html" data-t="nav_home">Home</a></li>
+          <li><a href="services.html" data-t="nav_services">Services</a></li>
+          <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Top Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Facials</a></li>
+          <li><a href="services.html">Hair Care</a></li>
+          <li><a href="services.html">Makeup</a></li>
+          <li><a href="services.html">Waxing</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item"><span class="icon">📍</span><span>786/40, Meerut Rd, Yogenderpuri, Qidwai Nagar, Muzaffarnagar, UP 251001</span></div>
+        <div class="footer-contact-item"><span class="icon">📞</span><span>94122 11583</span></div>
+        <div class="footer-contact-item"><span class="icon">🕐</span><span>Mon–Sat: 9AM–8PM | Sun: 10AM–6PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ruby Beauty Clinic. All rights reserved.</span>
+      <span>Muzaffarnagar, Uttar Pradesh</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919412211583" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

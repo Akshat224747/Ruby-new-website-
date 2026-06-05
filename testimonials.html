@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews & Testimonials | Ruby Beauty Clinic — Muzaffarnagar</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .rating-overview {
+      background: linear-gradient(135deg, var(--rose-gold-dark), var(--rose-gold));
+      border-radius: 24px;
+      padding: 50px 40px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 60px;
+      color: var(--white);
+    }
+
+    .rating-big {
+      text-align: center;
+    }
+
+    .rating-big .score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .rating-big .stars {
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      margin: 10px 0;
+    }
+
+    .rating-big p {
+      opacity: 0.8;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .rating-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rating-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .rating-bar-row span {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      min-width: 35px;
+    }
+
+    .bar-bg {
+      flex: 1;
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--white);
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    .rating-bar-row .count {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      min-width: 30px;
+      text-align: right;
+    }
+
+    /* REVIEWS GRID */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px var(--shadow-deep);
+    }
+
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--rose-gold-light);
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .review-stars {
+      color: #F4B942;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose-gold), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .author-info h4 {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .author-info span {
+      font-size: 0.72rem;
+      color: var(--rose-gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .service-tag {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--rose-gold-dark);
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 8px;
+    }
+
+    /* FEATURED REVIEW */
+    .featured-review {
+      background: linear-gradient(135deg, var(--text-dark), #4A2810);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 60px;
+    }
+
+    .featured-review blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto 25px;
+      line-height: 1.7;
+      color: var(--cream);
+    }
+
+    .featured-review .feat-stars {
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      color: #F4B942;
+      margin-bottom: 15px;
+    }
+
+    .featured-review cite {
+      font-size: 0.78rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose-gold-light);
+    }
+
+    /* LEAVE REVIEW CTA */
+    .review-cta {
+      background: var(--cream-dark);
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .review-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .review-cta p {
+      color: var(--text-light);
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: 992px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .rating-overview { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+      .featured-review { padding: 40px 20px; }
+      .rating-overview { padding: 35px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="brand">Ruby Beauty Clinic</span>
+      <span class="tagline-small">Ruby Makeover</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" data-t="nav_services">Services</a></li>
+      <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+      <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+      <li><a href="testimonials.html" class="active">Reviews</a></li>
+      <li><a href="about.html" data-t="nav_about">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span> Reviews</div>
+    <h1>Client Reviews</h1>
+    <p>Real experiences · Real love · Real beauty</p>
+  </div>
+
+  <section class="section">
+
+    <!-- RATING OVERVIEW -->
+    <div class="rating-overview fade-up">
+      <div class="rating-big">
+        <div class="score">4.9</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Based on 200+ Reviews</p>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-bar-row">
+          <span>5 ⭐</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div>
+          <span class="count">176</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>4 ⭐</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:9%"></div></div>
+          <span class="count">18</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>3 ⭐</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:2%"></div></div>
+          <span class="count">4</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>2 ⭐</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:1%"></div></div>
+          <span class="count">2</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>1 ⭐</span>
+          <div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED REVIEW -->
+    <div class="featured-review fade-up">
+      <div class="feat-stars">⭐⭐⭐⭐⭐</div>
+      <blockquote>"Maine apni beti ki shaadi ke liye Ruby Beauty Clinic choose kiya — aur ye meri zindagi ka sabse accha decision tha. Ruby ji ne bilkul waisa hi look banaya jaise humne soch rakha tha. Sab log dekhte hi reh gaye!"</blockquote>
+      <cite>— Sunita Verma, Mother of Bride · Muzaffarnagar</cite>
+    </div>
+
+    <!-- REVIEWS GRID -->
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Bridal makeup ekdum perfect tha. HD makeup laga tha aur poori raat tak fresh raha. Bahut khush hoon Ruby ji ke kaam se!"</p>
+        <div class="review-author">
+          <div class="author-avatar">N</div>
+          <div class="author-info">
+            <h4>Neha Gupta <span class="service-tag">Bridal Makeup</span></h4>
+            <span>Bride · Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Diamond facial karwaya — skin itni glowing ho gayi! Pehle aur baad mein fark clearly dikh raha tha. Definitely repeat karungi."</p>
+        <div class="review-author">
+          <div class="author-avatar">P</div>
+          <div class="author-info">
+            <h4>Priyanka Sharma <span class="service-tag">Diamond Facial</span></h4>
+            <span>Regular Client</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Keratin treatment karayi Priyanka di se — baal bilkul silky aur smooth ho gaye hain. Itna fark tha before-after mein!"</p>
+        <div class="review-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <h4>Ritu Agarwal <span class="service-tag">Keratin Treatment</span></h4>
+            <span>Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Engagement ke liye makeup karwaya — sab ne pooch pooch ke puch liya kahan se karwayi! Staff bahut friendly hai aur salon clean hai."</p>
+        <div class="review-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <h4>Anjali Singh <span class="service-tag">Engagement Makeup</span></h4>
+            <span>Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Meri mehendi bilkul waise bani jaise main chahti thi. Bridal mehendi bahut sundar bani thi aur colour bhi gehre aaya. Shukriya Ruby ji!"</p>
+        <div class="review-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info">
+            <h4>Sana Khan <span class="service-tag">Bridal Mehendi</span></h4>
+            <span>Bride · Meerut Rd Area</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Party makeup karayi for cousin's wedding — bilkul natural look mila jo maine manga tha. Price bhi reasonable hai. Bahut recommend karungi!"</p>
+        <div class="review-author">
+          <div class="author-avatar">K</div>
+          <div class="author-info">
+            <h4>Kavya Mittal <span class="service-tag">Party Makeup</span></h4>
+            <span>Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Full body waxing and de-tan karwaya — skin ekdum smooth aur glow kar rahi thi. Hygiene bohot acchi maintain ki jaati hai yahan."</p>
+        <div class="review-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <h4>Monika Tyagi <span class="service-tag">Waxing + De-Tan</span></h4>
+            <span>Regular Client</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Nail art karwaya shaadi ke liye — bilkul bridal design mila. Gel polish bahut time tak tika. Sunita di bahut accha kaam karti hain!"</p>
+        <div class="review-author">
+          <div class="author-avatar">D</div>
+          <div class="author-info">
+            <h4>Deepika Rana <span class="service-tag">Bridal Nail Art</span></h4>
+            <span>Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Pehli baar aaya aur itna accha experience raha ki ab sirf yahi aata hoon. Hair color aur hair spa dono karayi — result outstanding hai."</p>
+        <div class="review-author">
+          <div class="author-avatar">V</div>
+          <div class="author-info">
+            <h4>Varsha Bhatt <span class="service-tag">Hair Color + Spa</span></h4>
+            <span>Muzaffarnagar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAVE REVIEW CTA -->
+    <div class="review-cta fade-up">
+      <h2>Love Our Service? 💕</h2>
+      <p>Share your experience and inspire other women to discover their beauty!</p>
+      <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://wa.me/919412211583?text=I want to share my review for Ruby Beauty Clinic!" target="_blank" class="btn btn-whatsapp">💬 Share on WhatsApp</a>
+        <a href="booking.html" class="btn btn-primary">✦ Book Your Visit</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand">Ruby Beauty Clinic</span>
+        <span class="sub">Ruby Makeover</span>
+        <p>Trusted by thousands of women in Muzaffarnagar.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html" data-t="nav_home">Home</a></li>
+          <li><a href="services.html" data-t="nav_services">Services</a></li>
+          <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Facial & Skin</a></li>
+          <li><a href="services.html">Hair Services</a></li>
+          <li><a href="services.html">Waxing</a></li>
+          <li><a href="services.html">Nail Art</a></li>
+          <li><a href="services.html">Makeup</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p><span>📍</span> 786/40, Meerut Rd, Yogenderpuri, Muzaffarnagar, UP</p>
+        <p><span>📞</span> <a href="tel:+919412211583" style="color:var(--rose-gold-light);">+91 94122 11583</a></p>
+        <p><span>🕐</span> Mon–Sat: 9AM–8PM | Sun: 10AM–6PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Ruby Beauty Clinic. All rights reserved.</p>
+      <p>Made with ❤️ for Ruby Makeover</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919412211583" target="_blank" class="whatsapp-float">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.556 4.112 1.528 5.837L.057 23.5l5.806-1.523A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.516-5.18-1.415l-.371-.221-3.845 1.008 1.025-3.739-.242-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </a>
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

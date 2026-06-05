@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery | Ruby Beauty Clinic</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .filter-tabs { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn { padding: 0.5rem 1.4rem; border: 1.5px solid var(--cream-deeper); background: var(--white); color: var(--text-mid); font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: all 0.3s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--rose-gold); border-color: var(--rose-gold); color: white; }
+
+    .gallery-grid { columns: 4; column-gap: 1rem; padding: 0 5%; max-width: 1400px; margin: 0 auto; }
+    @media(max-width: 1024px) { .gallery-grid { columns: 3; } }
+    @media(max-width: 768px)  { .gallery-grid { columns: 2; } }
+    @media(max-width: 480px)  { .gallery-grid { columns: 1; } }
+
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 4px; cursor: pointer; display: block; }
+    .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,24,16,0.7) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-label { font-size: 0.78rem; color: white; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(10,5,3,0.95); z-index: 9999; align-items: center; justify-content: center; padding: 1rem; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(201,149,107,0.3); border: none; color: white; font-size: 1.5rem; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; transition: background 0.3s; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: var(--rose-gold); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">Ruby Beauty Clinic</span>
+      <span class="logo-sub">Ruby Makeover · Muzaffarnagar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-t="nav_home">Home</a></li>
+      <li><a href="services.html" data-t="nav_services">Services</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+      <li><a href="testimonials.html" data-t="nav_reviews">Reviews</a></li>
+      <li><a href="about.html" data-t="nav_about">About</a></li>
+      <li><a href="contact.html" data-t="nav_contact">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta" data-t="nav_book">Book Now</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLang()">हिंदी</button>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-tag">Our Work</div>
+      <h1 class="page-hero-title">Our <em>Gallery</em></h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2 class="section-title">Beauty <em>Transformations</em></h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Real work, real clients — 33 photos from Ruby Beauty Clinic.</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">All (33)</button>
+      <button class="filter-btn" data-filter="salon">Salon</button>
+      <button class="filter-btn" data-filter="bridal">Bridal</button>
+      <button class="filter-btn" data-filter="team">Team</button>
+      <button class="filter-btn" data-filter="products">Products</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- SALON PHOTOS -->
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(0)">
+        <img src="images/salon-entrance-2.jpg" alt="Ruby Beauty Clinic Entrance"/>
+        <div class="gallery-overlay"><span class="gallery-label">Clinic Entrance</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(1)">
+        <img src="images/salon-royal-1.jpg" alt="Royal Salon Interior"/>
+        <div class="gallery-overlay"><span class="gallery-label">Royal Interior</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(2)">
+        <img src="images/salon-royal-2.jpg" alt="Salon Interior"/>
+        <div class="gallery-overlay"><span class="gallery-label">Salon Floor</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(3)">
+        <img src="images/salon-luxury.jpg" alt="Luxury Salon"/>
+        <div class="gallery-overlay"><span class="gallery-label">Luxury Salon</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(4)">
+        <img src="images/salon-interior-2.jpg" alt="Salon Interior"/>
+        <div class="gallery-overlay"><span class="gallery-label">Salon Interior</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(5)">
+        <img src="images/salon-interior-3.jpg" alt="Hair Station"/>
+        <div class="gallery-overlay"><span class="gallery-label">Hair Station</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(6)">
+        <img src="images/salon-interior-1.jpg" alt="Waiting Area"/>
+        <div class="gallery-overlay"><span class="gallery-label">Waiting Area</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(7)">
+        <img src="images/salon-chairs.jpg" alt="Styling Chairs"/>
+        <div class="gallery-overlay"><span class="gallery-label">Styling Area</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(8)">
+        <img src="images/salon-interior-4.jpg" alt="Reception Area"/>
+        <div class="gallery-overlay"><span class="gallery-label">Reception Area</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(9)">
+        <img src="images/salon-entrance.jpg" alt="Clinic Entrance"/>
+        <div class="gallery-overlay"><span class="gallery-label">Clinic Entrance</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(10)">
+        <img src="images/treatment-room.jpg" alt="Treatment Room"/>
+        <div class="gallery-overlay"><span class="gallery-label">Treatment Room</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(11)">
+        <img src="images/treatment-room-2.jpg" alt="Facial Room"/>
+        <div class="gallery-overlay"><span class="gallery-label">Facial Room</span></div>
+      </div>
+
+      <!-- BRIDAL PHOTOS -->
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(12)">
+        <img src="images/bridal-1.jpg" alt="Bridal Makeup"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Makeup</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(13)">
+        <img src="images/bridal-2.jpg" alt="Bridal Look"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Look</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(14)">
+        <img src="images/bridal-3.jpg" alt="Bridal Makeover"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Makeover</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(15)">
+        <img src="images/bridal-4.jpg" alt="Bridal Look"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Look</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(16)">
+        <img src="images/bridal-5.jpg" alt="Bridal Makeover"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Makeover</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(17)">
+        <img src="images/bridal-6.jpg" alt="Bridal Closeup"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Closeup</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(18)">
+        <img src="images/bridal-7.jpg" alt="Bridal Makeup"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Makeup</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(19)">
+        <img src="images/bridal-8.jpg" alt="Bridal Look"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Look</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(20)">
+        <img src="images/bridal-9.jpg" alt="Bridal Side View"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Look</span></div>
+      </div>
+      <div class="gallery-item" data-category="bridal" onclick="openLightbox(21)">
+        <img src="images/bridal-couple.jpg" alt="Bridal Couple"/>
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Couple</span></div>
+      </div>
+
+      <!-- TEAM PHOTOS -->
+      <div class="gallery-item" data-category="team" onclick="openLightbox(22)">
+        <img src="images/owner-photo.jpg" alt="Owner"/>
+        <div class="gallery-overlay"><span class="gallery-label">Our Owner</span></div>
+      </div>
+      <div class="gallery-item" data-category="team" onclick="openLightbox(23)">
+        <img src="images/owner-selfie.jpg" alt="Owner at Salon"/>
+        <div class="gallery-overlay"><span class="gallery-label">Owner at Salon</span></div>
+      </div>
+      <div class="gallery-item" data-category="team" onclick="openLightbox(24)">
+        <img src="images/owner-award.jpg" alt="Award Winner"/>
+        <div class="gallery-overlay"><span class="gallery-label">Award Winner</span></div>
+      </div>
+      <div class="gallery-item" data-category="team" onclick="openLightbox(25)">
+        <img src="images/team-photo.jpg" alt="Our Team"/>
+        <div class="gallery-overlay"><span class="gallery-label">Our Team</span></div>
+      </div>
+
+      <!-- WORK PHOTOS -->
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(26)">
+        <img src="images/facial-treatment.jpg" alt="Facial Treatment"/>
+        <div class="gallery-overlay"><span class="gallery-label">Facial Treatment</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(27)">
+        <img src="images/client-makeover.jpg" alt="Client Makeover"/>
+        <div class="gallery-overlay"><span class="gallery-label">Client Makeover</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(28)">
+        <img src="images/hair-art.jpg" alt="Hair Art"/>
+        <div class="gallery-overlay"><span class="gallery-label">Hair Art Design</span></div>
+      </div>
+      <div class="gallery-item" data-category="salon" onclick="openLightbox(29)">
+        <img src="images/beauty-model.jpg" alt="Beauty"/>
+        <div class="gallery-overlay"><span class="gallery-label">Beauty Styling</span></div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="gallery-item" data-category="products" onclick="openLightbox(30)">
+        <img src="images/products.jpg" alt="Premium Products"/>
+        <div class="gallery-overlay"><span class="gallery-label">Premium Products</span></div>
+      </div>
+      <div class="gallery-item" data-category="products" onclick="openLightbox(31)">
+        <img src="images/products-2.jpg" alt="Beauty Products"/>
+        <div class="gallery-overlay"><span class="gallery-label">Beauty Products</span></div>
+      </div>
+      <div class="gallery-item" data-category="products" onclick="openLightbox(32)">
+        <img src="images/products-3.jpg" alt="Skin Care Products"/>
+        <div class="gallery-overlay"><span class="gallery-label">Skin Care</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-prev" onclick="changeLightbox(-1)">&#8592;</button>
+    <img src="" id="lightboxImg" alt="Gallery Image"/>
+    <button class="lightbox-next" onclick="changeLightbox(1)">&#8594;</button>
+  </div>
+
+  <section style="background:var(--cream-dark); padding:3rem 5%; text-align:center;">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:var(--text-dark); margin-bottom:0.75rem;">Like What You <em style="font-style:italic; color:var(--rose-gold-dark);">See?</em></h2>
+    <p style="font-size:0.9rem; color:var(--text-light); font-weight:300; margin-bottom:1.5rem;">Book your appointment today and let us create your perfect look.</p>
+    <a href="booking.html" class="btn-primary">Book Appointment</a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <div class="logo-main">Ruby Beauty Clinic</div>
+        <span class="logo-sub">Ruby Makeover</span>
+        <p class="footer-desc">Premium beauty services in Muzaffarnagar.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html" data-t="nav_home">Home</a></li>
+          <li><a href="services.html" data-t="nav_services">Services</a></li>
+          <li><a href="gallery.html" data-t="nav_gallery">Gallery</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Facials</a></li>
+          <li><a href="services.html">Hair Care</a></li>
+          <li><a href="services.html">Makeup</a></li>
+          <li><a href="services.html">Waxing</a></li>
+          <li><a href="bridal.html" data-t="nav_bridal">Bridal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item"><span class="icon">📍</span><span>786/40, Meerut Rd, Muzaffarnagar, UP 251001</span></div>
+        <div class="footer-contact-item"><span class="icon">📞</span><span>94122 11583</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ruby Beauty Clinic. All rights reserved.</span>
+      <span>Muzaffarnagar, Uttar Pradesh</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919412211583" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/lang.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const images = [
+      'images/salon-entrance-2.jpg','images/salon-royal-1.jpg','images/salon-royal-2.jpg',
+      'images/salon-luxury.jpg','images/salon-interior-2.jpg','images/salon-interior-3.jpg',
+      'images/salon-interior-1.jpg','images/salon-chairs.jpg','images/salon-interior-4.jpg',
+      'images/salon-entrance.jpg','images/treatment-room.jpg','images/treatment-room-2.jpg',
+      'images/bridal-1.jpg','images/bridal-2.jpg','images/bridal-3.jpg',
+      'images/bridal-4.jpg','images/bridal-5.jpg','images/bridal-6.jpg',
+      'images/bridal-7.jpg','images/bridal-8.jpg','images/bridal-9.jpg',
+      'images/bridal-couple.jpg','images/owner-photo.jpg','images/owner-selfie.jpg',
+      'images/owner-award.jpg','images/team-photo.jpg','images/facial-treatment.jpg',
+      'images/client-makeover.jpg','images/hair-art.jpg','images/beauty-model.jpg',
+      'images/products.jpg','images/products-2.jpg','images/products-3.jpg'
+    ];
+    let current = 0;
+    function openLightbox(i) { current=i; document.getElementById('lightboxImg').src=images[i]; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+    function changeLightbox(d) { current=(current+d+images.length)%images.length; document.getElementById('lightboxImg').src=images[current]; }
+    document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLightbox(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowRight') changeLightbox(1); if(e.key==='ArrowLeft') changeLightbox(-1); });
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          item.style.display = (filter==='all' || item.dataset.category===filter) ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
